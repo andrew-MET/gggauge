@@ -16,3 +16,5 @@ Depends:
     ggplot2
 Suggests: 
     gganimate
+URL: https://github.com/andrew-MET/gggauge
+BugReports: https://github.com/andrew-MET/gggauge/issues
