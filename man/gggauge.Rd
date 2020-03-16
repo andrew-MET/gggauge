@@ -5,20 +5,31 @@
 \title{Title}
 \usage{
 gggauge(
-  data = NULL,
+  gauge_level = NULL,
   type = c("needle", "level"),
   animate = FALSE,
-  data_labels = NULL,
+  anim_fps = 10,
+  gauge_names = NULL,
   gauge_width = 1/3,
-  gauge_colour = "grey30",
+  gauge_colour = "grey70",
   gauge_fill = "transparent",
+  needle_colour = "grey50",
+  needle_halfwidth = 0.1,
+  level_fill = "#008080",
+  show_gauge_name = TRUE,
+  gauge_name_size = 11,
+  gauge_name_colour = "grey20",
+  gauge_name_family = NULL,
+  gauge_name_face = NULL,
+  gauge_name_spacer = 2,
   plot_ticks = TRUE,
   tick_length = 0.05,
   tick_colour = "grey70",
   plot_tick_labels = TRUE,
   tick_label_colour = "grey50",
   tick_label_size = 4,
-  rm_obscured_labels = FALSE,
+  ticks_fill = NULL,
+  rm_obscured_labels = TRUE,
   limits = c(NA, NA),
   num_breaks = 11,
   breaks = NULL,
@@ -26,7 +37,86 @@ gggauge(
 )
 }
 \arguments{
-\item{...}{}
+\item{gauge_level}{The value for the gauge to point to. If more than one
+value is given, one gauge will be plotted for each value.}
+
+\item{type}{The type of gauge to plot. 'needle' plots a gauge with a needle
+pointing the value. 'level' plots a gauge that is filled to the value.}
+
+\item{animate}{Logical. If more than one value is given in
+\code{gauge_value}, and \code{animate = TRUE}, an animated gif of the gauge
+will be returned. Requires the R package '\code{gganimate}' and the
+'gifski' library.}
+
+\item{anim_fps}{The number of frames per second for the animation.}
+
+\item{gauge_names}{The names of the gauges. If set to NULL each gauge is
+given a number starting from 1 to the length of \code{gauge_level}.}
+
+\item{gauge_width}{The width of the gauge as a fraction of the radius of the
+gauge.}
+
+\item{gauge_colour}{The outline colour for the gauge.}
+
+\item{gauge_fill}{The fill colour for the gauge.}
+
+\item{needle_colour}{The colour of the needle of the gauge if \code{type =
+"needle"}.}
+
+\item{needle_halfwidth}{The needle is an isosceles triangle so this is the
+width of half of that triangle. Note that the radius of the whole gauge is
+equal to 1.}
+
+\item{level_fill}{The fill colour when \code{type = "level"}. If more than
+one level is given in \code{gauge_level} and there are fewer colours
+specified in \code{level_fill}, colours will be recycled.}
+
+\item{show_gauge_name}{Logical. Whether to show the name of the gauge aboove
+each gauge.}
+
+\item{gauge_name_size}{The font size for gauge names.}
+
+\item{gauge_name_colour}{The font colour for gauge names.}
+
+\item{gauge_name_family}{The font family for gauge names.}
+
+\item{gauge_name_face}{The font face for gauge names.}
+
+\item{gauge_name_spacer}{When the \code{gauge_name_size} becomes large, the
+bottom of the text may be cut off. To prevent this from happening you can
+increase the value here to get a larger margin.}
+
+\item{plot_ticks}{Logical. Whether to plot tick marks.}
+
+\item{tick_length}{The length of the tick marks.}
+
+\item{tick_colour}{The colour of the tick marks.}
+
+\item{plot_tick_labels}{Logical. Whether to plot tick labels.}
+
+\item{tick_label_colour}{The colour of the tick labels.}
+
+\item{tick_label_size}{The size of the tick labels.}
+
+\item{ticks_fill}{For \code{type = "needle"}, the fill colour of the gauge
+can be changed between each tick mark. If there is one fewer colours than
+the number of breaks, those colours will be used, otherwise colours will be
+interpolated so that there are one fewer colours than the number of breaks.}
+
+\item{rm_obscured_labels}{Logical. Labels at the start and end of the gauge
+are obscured by the gauge outline. Set to TRUE (the default) to not show
+these labels.}
+
+\item{limits}{The limits of the gauge. Should be a numeric vector of length
+2. Set to NA to use the data.}
+
+\item{num_breaks}{The number of breaks in the gauge. A set of breaks will be
+determined using either the values set in \code{limits} or from the data
+using the \link[base]{pretty}. Ignored if \code{breaks} is not NULL.}
+
+\item{breaks}{Explicit breaks.}
+
+\item{...}{Not used.}
 }
 \value{
 
