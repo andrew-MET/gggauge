@@ -26,6 +26,9 @@ compute_break_angles <- function(gauge_level, breaks, limits, num_breaks) {
     breaks <- pretty(c(min_limit, max_limit), n = num_breaks)
   }
 
+  if (!is.na(limits[1]) && limits[1] < min(breaks)) breaks <- c(limits[1], breaks)
+  if (!is.na(limits[2]) && limits[2] > max(breaks)) breaks <- c(breaks, limits[2])
+
   list(
     breaks       = breaks,
     break_angles = pi * ((max(breaks) - breaks) / (max(breaks) - min(breaks)))

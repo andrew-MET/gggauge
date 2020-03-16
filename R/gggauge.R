@@ -50,7 +50,8 @@
 #' @param num_breaks The number of breaks in the gauge. A set of breaks will be
 #'   determined using either the values set in \code{limits} or from the data
 #'   using the \link[base]{pretty}. Ignored if \code{breaks} is not NULL.
-#' @param breaks Explicit breaks.
+#' @param breaks Explicit breaks. If \code{limits} are outside of breaks, the
+#'   values for \code{limits} will be added as the first and last breaks.
 #' @param ... Not used.
 #'
 #' @return
